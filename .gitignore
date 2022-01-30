@@ -1,0 +1,14 @@
+# Jetbrains
+.idea
+
+# Visual Studio
+.vs
+
+# macOS
+*.DS_Store
+
+# C#
+[Oo]bj/
+[Bb]in/
+**/[Pp]ackages/*
+*.user
