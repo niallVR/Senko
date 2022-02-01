@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Flurl", "Senko.Flurl\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Flurl.Tests", "Senko.Flurl.Tests\Senko.Flurl.Tests.csproj", "{2633A398-BA1D-41BA-9FDB-48D39DE9EB03}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{E44CC221-6382-4B53-B2F1-A5CB85726D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Hosting", "Senko.Hosting\Senko.Hosting.csproj", "{B5749D53-03D4-4E0C-B188-88F5B70D5C99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,7 @@ Global
 		{AE226442-F555-4831-AB01-8661EDF1B509} = {5DEBBAA4-4A9E-4702-97AF-5BE563924EFC}
 		{E8A7F234-FA76-47A8-AE9C-E49CA4184722} = {7679BA3D-85BA-4E58-9225-C005425A54C6}
 		{2633A398-BA1D-41BA-9FDB-48D39DE9EB03} = {7679BA3D-85BA-4E58-9225-C005425A54C6}
+		{B5749D53-03D4-4E0C-B188-88F5B70D5C99} = {E44CC221-6382-4B53-B2F1-A5CB85726D2E}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{363CCBD2-8D91-40FD-9971-0121382D57D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -65,5 +70,9 @@ Global
 		{2633A398-BA1D-41BA-9FDB-48D39DE9EB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2633A398-BA1D-41BA-9FDB-48D39DE9EB03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2633A398-BA1D-41BA-9FDB-48D39DE9EB03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5749D53-03D4-4E0C-B188-88F5B70D5C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5749D53-03D4-4E0C-B188-88F5B70D5C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5749D53-03D4-4E0C-B188-88F5B70D5C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5749D53-03D4-4E0C-B188-88F5B70D5C99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
