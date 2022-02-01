@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using NiallVR.Senko.Extensions.Extensions;
+using NiallVR.Senko.Async.Extensions;
 
-namespace NiallVR.Senko.Extensions.Utilities; 
+namespace NiallVR.Senko.Async.Utilities; 
 
 public static class TaskUtils {
     /// <summary>

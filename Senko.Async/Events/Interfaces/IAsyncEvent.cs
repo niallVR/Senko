@@ -1,4 +1,4 @@
-namespace NiallVR.Senko.Extensions.Events.Interfaces; 
+namespace NiallVR.Senko.Async.Events.Interfaces; 
 
 /// <summary>
 /// An async implementation of C# events.

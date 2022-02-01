@@ -1,4 +1,4 @@
-namespace NiallVR.Senko.Extensions.Events.Interfaces; 
+namespace NiallVR.Senko.Async.Events.Interfaces; 
 
 /// <summary>
 /// An <see cref="IAsyncEvent"/> handler which queues incoming events and invokes them one at a time.

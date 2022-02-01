@@ -1,4 +1,4 @@
-﻿namespace NiallVR.Senko.Extensions.Extensions; 
+﻿namespace NiallVR.Senko.Async.Extensions; 
 
 /// <summary>
 /// A collection of extensions for working with Tasks

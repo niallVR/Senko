@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Extensions.Logging.Abstractions;
-using NiallVR.Senko.Extensions.Events.Entities;
+using NiallVR.Senko.Async.Events.Entities;
 using Xunit;
 
 namespace Senko.Async.Tests.Events.Entities; 

@@ -1,4 +1,4 @@
-namespace NiallVR.Senko.Extensions.Events.Interfaces; 
+namespace NiallVR.Senko.Async.Events.Interfaces; 
 
 /// <inheritdoc cref="IAsyncEvent"/>
 /// <typeparam name="T">The type passed to subscribers.</typeparam>

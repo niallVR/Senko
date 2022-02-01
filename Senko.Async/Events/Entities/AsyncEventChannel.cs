@@ -1,9 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading.Channels;
+﻿using System.Threading.Channels;
 using Microsoft.Extensions.Logging;
-using NiallVR.Senko.Extensions.Events.Interfaces;
+using NiallVR.Senko.Async.Events.Interfaces;
 
-namespace NiallVR.Senko.Extensions.Events.Entities;
+namespace NiallVR.Senko.Async.Events.Entities;
 
 public class AsyncEventChannel : IAsyncEventChannel {
     private readonly ILogger? _logger;

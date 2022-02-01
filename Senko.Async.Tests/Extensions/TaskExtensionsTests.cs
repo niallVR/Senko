@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NiallVR.Senko.Extensions.Extensions;
+using NiallVR.Senko.Async.Extensions;
 using Xunit;
 
 namespace Senko.Async.Tests.Extensions; 

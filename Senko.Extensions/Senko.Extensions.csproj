@@ -1,10 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <!-- Project -->
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>NiallVR.Senko.Extensions</RootNamespace>
+
+        <!-- Nuget -->
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageId>NiallVR.Senko.Extensions</PackageId>
+        <Title>NiallVR.Senko.Extensions</Title>
+        <Authors>NiallVR</Authors>
+        <Description>🏗️ Common extensions for built-in types.</Description>
+        <PackageProjectUrl>https://github.com/niallVR/Senko</PackageProjectUrl>
+        <License>https://github.com/niallVR/Senko/blob/main/LICENSE</License>
+        <RepositoryUrl>https://github.com/niallVR/Senko</RepositoryUrl>
     </PropertyGroup>
 
 </Project>

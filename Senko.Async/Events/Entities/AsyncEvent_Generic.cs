@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using NiallVR.Senko.Extensions.Events.Interfaces;
+using NiallVR.Senko.Async.Events.Interfaces;
 
-namespace NiallVR.Senko.Extensions.Events.Entities; 
+namespace NiallVR.Senko.Async.Events.Entities; 
 
 public class AsyncEvent<T> : IAsyncEvent<T> {
     private readonly ILogger? _logger;

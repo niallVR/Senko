@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using NiallVR.Senko.Extensions.Utilities;
+using NiallVR.Senko.Async.Utilities;
 using Xunit;
 
 namespace Senko.Async.Tests.Utilities; 
