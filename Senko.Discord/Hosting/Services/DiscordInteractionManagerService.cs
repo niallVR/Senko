@@ -5,29 +5,39 @@ using Microsoft.Extensions.DependencyInjection;
 using NiallVR.Senko.Discord.Hosting.Abstract;
 using NiallVR.Senko.Discord.Hosting.Models;
 using NiallVR.Senko.Extensions.Collections;
+using NiallVR.Senko.Hosting.Abstract;
 
 namespace NiallVR.Senko.Discord.Hosting.Services; 
 
-internal class DiscordInteractionManagerService : DiscordService {
+internal class DiscordInteractionManagerService : HostedService {
     private ModuleInfo[] _globalModules = null!;
     private ModuleInfo[] _globalGuildModules = null!;
     private readonly Dictionary<ulong, ModuleInfo[]> _guildModules = new();
     
-    private readonly DiscordSetup _discordConfig;
     private readonly IServiceProvider _services;
+    private readonly DiscordSetup _discordConfig;
+    private readonly DiscordSocketClient _discord;
     private readonly InteractionService _interactionService;
 
-    public DiscordInteractionManagerService(IServiceProvider services, DiscordSocketClient discord) : base(discord) {
+    public DiscordInteractionManagerService(IServiceProvider services) {
         _services = services;
         _discordConfig = services.GetRequiredService<DiscordSetup>();
         _interactionService = services.GetRequiredService<InteractionService>();
-        Discord.JoinedGuild += OnJoinedGuild;
+        _discord = services.GetRequiredService<DiscordSocketClient>();
+
+        if (_discordConfig.WantInteractions) {
+            _discord.Ready += OnDiscordReady;
+            _discord.JoinedGuild += OnJoinedGuild;
+        }
     }
 
     /// <summary>
     /// Prepares the modules to be registered upon connecting to Discord.
     /// </summary>
     public override async Task StartAsync(CancellationToken _) {
+        if (!_discordConfig.WantInteractions)
+            return;
+        
         _globalModules = new ModuleInfo[_discordConfig.GlobalInteractionModules.Count];
         for (var i = 0; i < _discordConfig.GlobalInteractionModules.Count; i++)
             _globalModules[i] = await _interactionService.AddModuleAsync(_discordConfig.GlobalInteractionModules[i], _services);
@@ -46,9 +56,9 @@ internal class DiscordInteractionManagerService : DiscordService {
     /// <summary>
     /// Adds interactions globally and to guilds upon the bot connecting to Discord.
     /// </summary>
-    protected override async Task OnDiscordReady() {
+    private async Task OnDiscordReady() {
         await _interactionService.AddModulesGloballyAsync(true, _globalModules);
-        foreach (var guild in Discord.Guilds)
+        foreach (var guild in _discord.Guilds)
             await RegisterModulesToGuild(guild);
     }
 

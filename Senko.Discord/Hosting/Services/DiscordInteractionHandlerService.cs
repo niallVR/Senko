@@ -21,10 +21,14 @@ internal class DiscordInteractionHandlerService : HostedService {
         _services = services;
         _logger = services.GetRequiredService<ILogger<DiscordInteractionHandlerService>>();
         _interactionService = services.GetRequiredService<InteractionService>();
+        _discord = services.GetRequiredService<DiscordSocketClient>();
+
+        var discordSetup = services.GetRequiredService<DiscordSetup>();
+        if (!discordSetup.WantInteractions)
+            return;
+        
         _interactionService.SlashCommandExecuted += HandleInteractionResult;
         _interactionService.ContextCommandExecuted += HandleInteractionResult;
-        
-        _discord = services.GetRequiredService<DiscordSocketClient>();
         _discord.SlashCommandExecuted += HandleSlashCommandInteraction;
         _discord.UserCommandExecuted += HandleSlashCommandInteraction;
         _discord.MessageCommandExecuted += HandleSlashCommandInteraction;
