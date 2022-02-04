@@ -22,6 +22,7 @@ public class DiscordSetup {
     public InteractionServiceConfig InteractionConfig { get; } = new();
 
     // Internal collection of added modules.
+    internal bool WantInteractions;
     internal readonly List<Type> GlobalInteractionModules = new();
     internal readonly List<Type> GlobalGuildInteractionModules = new();
     internal readonly Dictionary<ulong, List<Type>> GuildInteractionModules = new();

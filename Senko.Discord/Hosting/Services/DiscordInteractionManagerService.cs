@@ -2,30 +2,26 @@ using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using NiallVR.Senko.Discord.Hosting.Abstract;
 using NiallVR.Senko.Discord.Hosting.Models;
 using NiallVR.Senko.Extensions.Collections;
-using NiallVR.Senko.Hosting.Abstract;
 
 namespace NiallVR.Senko.Discord.Hosting.Services; 
 
-public class DiscordInteractionManagerService : HostedService {
+internal class DiscordInteractionManagerService : DiscordService {
     private ModuleInfo[] _globalModules = null!;
     private ModuleInfo[] _globalGuildModules = null!;
     private readonly Dictionary<ulong, ModuleInfo[]> _guildModules = new();
     
     private readonly DiscordSetup _discordConfig;
     private readonly IServiceProvider _services;
-    private readonly DiscordSocketClient _discord;
     private readonly InteractionService _interactionService;
 
-    public DiscordInteractionManagerService(IServiceProvider services) {
+    public DiscordInteractionManagerService(IServiceProvider services, DiscordSocketClient discord) : base(discord) {
         _services = services;
         _discordConfig = services.GetRequiredService<DiscordSetup>();
         _interactionService = services.GetRequiredService<InteractionService>();
-
-        _discord = services.GetRequiredService<DiscordSocketClient>();
-        _discord.Ready += OnDiscordReady;
-        _discord.JoinedGuild += OnJoinedGuild;
+        Discord.JoinedGuild += OnJoinedGuild;
     }
 
     /// <summary>
@@ -46,13 +42,13 @@ public class DiscordInteractionManagerService : HostedService {
                 moduleArray[i] = await _interactionService.AddModuleAsync(modules[i], _services);
         }
     }
-    
+
     /// <summary>
     /// Adds interactions globally and to guilds upon the bot connecting to Discord.
     /// </summary>
-    private async Task OnDiscordReady() {
+    protected override async Task OnDiscordReady() {
         await _interactionService.AddModulesGloballyAsync(true, _globalModules);
-        foreach (var guild in _discord.Guilds)
+        foreach (var guild in Discord.Guilds)
             await RegisterModulesToGuild(guild);
     }
 
