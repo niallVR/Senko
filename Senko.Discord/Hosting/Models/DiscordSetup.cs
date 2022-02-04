@@ -8,7 +8,7 @@ public class DiscordSetup {
     /// <summary>
     /// The token to use when authenticating with Discord.
     /// </summary>
-    public string Token { get; set; }
+    public string Token { get; set; } = "";
 
     /// <summary>
     /// Configuration of the Discord client.
@@ -21,8 +21,12 @@ public class DiscordSetup {
     /// <remarks>This will only be activated if an interaction module is added.</remarks>
     public InteractionServiceConfig InteractionConfig { get; } = new();
 
+    /// <summary>
+    /// Should the Discord client have interaction features?
+    /// </summary>
+    public bool WantInteraction { get; set; }
+    
     // Internal collection of added modules.
-    internal bool WantInteractions;
     internal readonly List<Type> GlobalInteractionModules = new();
     internal readonly List<Type> GlobalGuildInteractionModules = new();
     internal readonly Dictionary<ulong, List<Type>> GuildInteractionModules = new();

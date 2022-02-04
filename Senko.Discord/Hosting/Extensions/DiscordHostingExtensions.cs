@@ -7,9 +7,6 @@ using NiallVR.Senko.Discord.Hosting.Services;
 
 namespace NiallVR.Senko.Discord.Hosting.Extensions;
 
-/// <summary>
-/// Extensions for the <see cref="DiscordSocketClient"/> class.
-/// </summary>
 public static class DiscordHostingExtensions {
     /// <summary>
     /// Adds a Discord client to the <see cref="IHostBuilder"/>.
@@ -29,20 +26,13 @@ public static class DiscordHostingExtensions {
             // Add in the logging bridge
             services.AddHostedService<DiscordLogService>();
 
-            // Work out if they added any interaction modules
-            var globalInteractionModules = setup.GlobalInteractionModules.Any();
-            var globalGuildInteractionModules = setup.GlobalGuildInteractionModules.Any();
-            var guildInteractionModules = setup.GuildInteractionModules.Any();
-            
-            // Add the interaction modules if they added a service for it.
-            var wantInteractions = globalInteractionModules || globalGuildInteractionModules || guildInteractionModules;
-            if (wantInteractions) {
-                services.AddSingleton(setup.InteractionConfig);
-                services.AddSingleton<InteractionService>();
-                services.AddHostedService<DiscordInteractionManagerService>();
-                services.AddHostedService<DiscordInteractionHandlerService>();
-            }
-            
+            // Right now there's no way to tell if we want interactivity or not.
+            // So add the classes and we'll block it during startup.
+            services.AddSingleton(setup.InteractionConfig);
+            services.AddSingleton<InteractionService>();
+            services.AddHostedService<DiscordInteractionManagerService>();
+            services.AddHostedService<DiscordInteractionHandlerService>();
+
             // Add in the Discord client and its service.
             services.AddSingleton(setup.DiscordConfig);
             services.AddSingleton<DiscordSocketClient>();

@@ -12,23 +12,24 @@ namespace NiallVR.Senko.Discord.Hosting.Services;
 /// Manages the interaction service if it's enabled.
 /// </summary>
 internal class DiscordInteractionHandlerService : HostedService {
-    private readonly IServiceProvider _services;
-    private readonly InteractionService _interactionService;
-    private readonly DiscordSocketClient _discord;
-    private readonly ILogger<DiscordInteractionHandlerService> _logger;
+    private readonly IServiceProvider? _services;
+    private readonly InteractionService? _interactionService;
+    private readonly DiscordSocketClient? _discord;
+    private readonly ILogger<DiscordInteractionHandlerService>? _logger;
 
     public DiscordInteractionHandlerService(IServiceProvider services) {
+        // If we don't want the interaction service enabled, don't do anything.
+        var discordConfig = services.GetRequiredService<DiscordSetup>();
+        if (!discordConfig.WantInteraction)
+            return;
+        
         _services = services;
         _logger = services.GetRequiredService<ILogger<DiscordInteractionHandlerService>>();
         _interactionService = services.GetRequiredService<InteractionService>();
-        _discord = services.GetRequiredService<DiscordSocketClient>();
-
-        var discordSetup = services.GetRequiredService<DiscordSetup>();
-        if (!discordSetup.WantInteractions)
-            return;
-        
         _interactionService.SlashCommandExecuted += HandleInteractionResult;
         _interactionService.ContextCommandExecuted += HandleInteractionResult;
+        
+        _discord = services.GetRequiredService<DiscordSocketClient>();
         _discord.SlashCommandExecuted += HandleSlashCommandInteraction;
         _discord.UserCommandExecuted += HandleSlashCommandInteraction;
         _discord.MessageCommandExecuted += HandleSlashCommandInteraction;
@@ -39,9 +40,9 @@ internal class DiscordInteractionHandlerService : HostedService {
     /// </summary>
     private async Task HandleSlashCommandInteraction(SocketInteraction arg) {
         try {
-            await _interactionService.ExecuteCommandAsync(new SocketInteractionContext(_discord, arg), _services);
+            await _interactionService!.ExecuteCommandAsync(new SocketInteractionContext(_discord, arg), _services);
         } catch (Exception error) {
-            _logger.LogError(error, "An exception occurred whilst handling a interaction");
+            _logger!.LogError(error, "An exception occurred whilst handling a interaction");
         }
     }
 
