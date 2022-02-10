@@ -36,6 +36,11 @@ internal class DiscordLogService : HostedService {
             _ => throw new ArgumentOutOfRangeException()
         };
 
+        if (logMessage.Exception is GatewayReconnectException) {
+            _logger.LogInformation("Server requested a reconnect");
+            return Task.CompletedTask;
+        }
+
         _logger.Log(logLevel, logMessage.Exception, logMessage.Message);
         return Task.CompletedTask;
     }
