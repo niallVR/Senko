@@ -1,4 +1,5 @@
 using NiallVR.Senko.Serilog.Globals;
+using NiallVR.Senko.Serilog.Interfaces;
 using Serilog;
 using Serilog.Events;
 
@@ -26,5 +27,28 @@ public static class SerilogSetupExtensions {
             theme: SerilogConsoleSettings.Theme,
             restrictedToMinimumLevel: minLevel
         );
+    }
+    
+    /// <summary>
+    /// Adds a Seq sink to the logging config, with the minimum log level set to Debug.
+    /// </summary>
+    /// <param name="config">The config to add the Seq sink to.</param>
+    /// <param name="seqConfig">Connection information for Seq.</param>
+    /// <returns>The config the Seq sink was added to.</returns>
+    public static LoggerConfiguration SetupSeqSink(this LoggerConfiguration config, ISeqConfig seqConfig) {
+        return config.SetupSeqSink(seqConfig, LogEventLevel.Debug);
+    }
+    
+    /// <summary>
+    /// Adds a Seq sink to the logging config.
+    /// </summary>
+    /// <param name="config">The config to add the Seq sink to.</param>
+    /// <param name="seqConfig">Connection information for Seq.</param>
+    /// <param name="minLevel">The minimum level that will be logged.</param>
+    /// <returns>The config the Seq sink was added to.</returns>
+    public static LoggerConfiguration SetupSeqSink(this LoggerConfiguration config, ISeqConfig seqConfig, LogEventLevel minLevel) {
+        if (!string.IsNullOrWhiteSpace(seqConfig.Host))
+            config.WriteTo.Seq(seqConfig.Host, apiKey: seqConfig.Token);
+        return config;
     }
 }
