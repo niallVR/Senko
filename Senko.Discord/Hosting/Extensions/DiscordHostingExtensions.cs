@@ -18,24 +18,21 @@ public static class DiscordHostingExtensions {
         return builder.ConfigureServices((_, services) => {
             // Create the setup and prompt the user for their configuration.
             var setup = new DiscordSetup();
-            services.AddSingleton(s => {
-                config(s, setup);
-                return setup;
-            });
+            services.AddSingleton(s => { config(s, setup); return setup; });
 
             // Add in the logging bridge
             services.AddHostedService<DiscordLogService>();
 
             // Right now there's no way to tell if we want interactivity or not.
             // So add the classes and we'll block it during startup.
-            services.AddSingleton(setup.InteractionConfig);
-            services.AddSingleton<InteractionService>();
+            services.AddSingleton(s => s.GetRequiredService<DiscordSetup>().InteractionConfig);
+            services.AddSingleton(s => new InteractionService(s.GetRequiredService<DiscordSocketClient>(), s.GetRequiredService<InteractionServiceConfig>()));
             services.AddHostedService<DiscordInteractionManagerService>();
             services.AddHostedService<DiscordInteractionHandlerService>();
 
             // Add in the Discord client and its service.
-            services.AddSingleton(setup.DiscordConfig);
-            services.AddSingleton<DiscordSocketClient>();
+            services.AddSingleton(s => s.GetRequiredService<DiscordSetup>().DiscordConfig);
+            services.AddSingleton(s => new DiscordSocketClient(s.GetRequiredService<DiscordSocketConfig>()));
             services.AddHostedService<DiscordLauncherService>();
         });
     }
