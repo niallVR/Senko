@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NiallVR.Senko.Hosting.Services;
+using NiallVR.Senko.Hosting.Logging.Services;
 using Serilog;
 
-namespace NiallVR.Senko.Hosting.Extensions; 
+namespace NiallVR.Senko.Hosting.Logging.Extensions; 
 
 public static class SerilogHostedExtensions {
     /// <summary>

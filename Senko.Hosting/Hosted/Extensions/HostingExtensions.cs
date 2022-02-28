@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace NiallVR.Senko.Hosting.Extensions; 
+namespace NiallVR.Senko.Hosting.Hosted.Extensions; 
 
 public static class HostingExtensions {
     /// <summary>
@@ -16,6 +16,7 @@ public static class HostingExtensions {
     }
     
     /// <inheritdoc cref="AddHostedServiceAsSelf{T}(Microsoft.Extensions.DependencyInjection.IServiceCollection)"/>
+    /// <param name="services">The service collection to add the hosted service to.</param>
     /// <param name="factory">The function used to generate the instance.</param>
     public static IServiceCollection AddHostedServiceAsSelf<T>(this IServiceCollection services, Func<IServiceProvider, T> factory) where T : class, IHostedService {
         services.AddSingleton(factory);

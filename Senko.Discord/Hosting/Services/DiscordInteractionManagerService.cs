@@ -4,7 +4,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using NiallVR.Senko.Discord.Hosting.Models;
 using NiallVR.Senko.Extensions.Collections;
-using NiallVR.Senko.Hosting.Abstract;
+using NiallVR.Senko.Hosting.Hosted.Abstract;
 
 namespace NiallVR.Senko.Discord.Hosting.Services; 
 

@@ -3,7 +3,7 @@ using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NiallVR.Senko.Hosting.Abstract;
+using NiallVR.Senko.Hosting.Hosted.Abstract;
 
 namespace NiallVR.Senko.Discord.Hosting.Services; 
 

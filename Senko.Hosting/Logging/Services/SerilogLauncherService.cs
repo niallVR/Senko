@@ -1,7 +1,7 @@
-using NiallVR.Senko.Hosting.Abstract;
+using NiallVR.Senko.Hosting.Hosted.Abstract;
 using Serilog;
 
-namespace NiallVR.Senko.Hosting.Services; 
+namespace NiallVR.Senko.Hosting.Logging.Services; 
 
 public class SerilogLauncherService : HostedService {
     public SerilogLauncherService(IServiceProvider services, Action<IServiceProvider, LoggerConfiguration> config) {

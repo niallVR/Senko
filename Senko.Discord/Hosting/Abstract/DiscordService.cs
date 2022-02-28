@@ -1,5 +1,5 @@
 using Discord.WebSocket;
-using NiallVR.Senko.Hosting.Abstract;
+using NiallVR.Senko.Hosting.Hosted.Abstract;
 
 namespace NiallVR.Senko.Discord.Hosting.Abstract; 
 
