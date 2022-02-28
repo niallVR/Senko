@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discord", "Discord", "{E422
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Discord", "Senko.Discord\Senko.Discord.csproj", "{CE835FD7-0D8A-49C4-8788-4C11D8B2A68A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Hosting.Example", "Senko.Hosting.Example\Senko.Hosting.Example.csproj", "{9207C5D4-D824-49F7-AA1A-85CD43E8C446}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,7 @@ Global
 		{2633A398-BA1D-41BA-9FDB-48D39DE9EB03} = {7679BA3D-85BA-4E58-9225-C005425A54C6}
 		{B5749D53-03D4-4E0C-B188-88F5B70D5C99} = {E44CC221-6382-4B53-B2F1-A5CB85726D2E}
 		{CE835FD7-0D8A-49C4-8788-4C11D8B2A68A} = {E4220A65-4360-496E-A808-AA60CBACCE9E}
+		{9207C5D4-D824-49F7-AA1A-85CD43E8C446} = {E44CC221-6382-4B53-B2F1-A5CB85726D2E}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{363CCBD2-8D91-40FD-9971-0121382D57D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -83,5 +86,9 @@ Global
 		{CE835FD7-0D8A-49C4-8788-4C11D8B2A68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE835FD7-0D8A-49C4-8788-4C11D8B2A68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE835FD7-0D8A-49C4-8788-4C11D8B2A68A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9207C5D4-D824-49F7-AA1A-85CD43E8C446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9207C5D4-D824-49F7-AA1A-85CD43E8C446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9207C5D4-D824-49F7-AA1A-85CD43E8C446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9207C5D4-D824-49F7-AA1A-85CD43E8C446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
