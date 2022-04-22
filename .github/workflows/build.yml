@@ -19,7 +19,7 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test --verbosity normal
   
-  publish-senko-async:
+  publish-senko-core:
     needs: run-tests
     runs-on: ubuntu-latest
     steps:
@@ -33,10 +33,29 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create the package
-        run: dotnet pack Senko.Async -c Release -p:Version=${{ github.event.release.tag_name }}
+        run: dotnet pack Source/Senko.Core -c Release -p:Version=${{ github.event.release.tag_name }}
 
       - name: Push NuGet
-        run: dotnet nuget push Senko.Async/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push Source/Senko.Core/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+  publish-senko-bootstrap:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+          include-prerelease: true
+
+      - name: Checkout files
+        uses: actions/checkout@v2
+
+      - name: Create the package
+        run: dotnet pack Source/Senko.Bootstrap -c Release -p:Version=${{ github.event.release.tag_name }}
+
+      - name: Push NuGet
+        run: dotnet nuget push Source/Senko.Bootstrap/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
   publish-senko-discord:
     needs: run-tests
@@ -52,83 +71,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create the package
-        run: dotnet pack Senko.Discord -c Release -p:Version=${{ github.event.release.tag_name }}
+        run: dotnet pack Source/Senko.Discord -c Release -p:Version=${{ github.event.release.tag_name }}
 
       - name: Push NuGet
-        run: dotnet nuget push Senko.Discord/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-
-  publish-senko-extensions:
-    needs: run-tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
-
-      - name: Checkout files
-        uses: actions/checkout@v2
-
-      - name: Create the package
-        run: dotnet pack Senko.Extensions -c Release -p:Version=${{ github.event.release.tag_name }}
-
-      - name: Push NuGet
-        run: dotnet nuget push Senko.Extensions/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-
-  publish-senko-flurl:
-    needs: run-tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
-
-      - name: Checkout files
-        uses: actions/checkout@v2
-
-      - name: Create the package
-        run: dotnet pack Senko.Flurl -c Release -p:Version=${{ github.event.release.tag_name }}
-
-      - name: Push NuGet
-        run: dotnet nuget push Senko.Flurl/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-
-  publish-senko-hosting:
-    needs: run-tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
-
-      - name: Checkout files
-        uses: actions/checkout@v2
-
-      - name: Create the package
-        run: dotnet pack Senko.Hosting -c Release -p:Version=${{ github.event.release.tag_name }}
-
-      - name: Push NuGet
-        run: dotnet nuget push Senko.Hosting/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-
-  publish-senko-serilog:
-    needs: run-tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
-
-      - name: Checkout files
-        uses: actions/checkout@v2
-
-      - name: Create the package
-        run: dotnet pack Senko.Serilog -c Release -p:Version=${{ github.event.release.tag_name }}
-
-      - name: Push NuGet
-        run: dotnet nuget push Senko.Serilog/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push Source/Senko.Discord/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
