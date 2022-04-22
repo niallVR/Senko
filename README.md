@@ -4,14 +4,19 @@
 A code library of common classes and extensions used across my C# projects.
 
 ## 🏗️ Project Structure
-| Project Name                                                                 | Description                                                     |
-|------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [Senko.Async](https://www.nuget.org/packages/NiallVR.Senko.Async/)           | Types, functions and extensions to help with Async programming. |
-| [Senko.Discord](https://www.nuget.org/packages/NiallVR.Senko.Discord/)       | Bootstrap code for my Discord bots.                             |
-| [Senko.Extensions](https://www.nuget.org/packages/NiallVR.Senko.Extensions/) | Common extensions for built-in types.                           |
-| [Senko.Flurl](https://www.nuget.org/packages/NiallVR.Senko.Flurl/)           | Extensions for Flurl.Http.                                      |
-| [Senko.Hosting](https://www.nuget.org/packages/NiallVR.Senko.Hosting/)       | Classes to assist with application hosting.                     |
-| [Senko.Serilog](https://www.nuget.org/packages/NiallVR.Senko.Serilog/)       | Logging classes used to setup Serilog.                          |
+| Project Name                                                               | Description                             |
+|----------------------------------------------------------------------------|-----------------------------------------|
+| [Senko.Bootstrap](https://www.nuget.org/packages/NiallVR.Senko.Bootstrap/) | Bootstrapping code for my applications. |
+| [Senko.Core](https://www.nuget.org/packages/NiallVR.Senko.Core/)           | Common code used across my projects.    |
+| [Senko.Discord](https://www.nuget.org/packages/NiallVR.Senko.Discord/)     | Bootstrap code for my Discord bots.     |
+
+## 📖 Documentation
+All public types in the packages use XML documentation. 
+
+## 🧪 Examples
+Usage examples of the "bootstrap" packages can be found in the `Examples` directory:
+- [Senko.Bootstrap](https://github.com/niallVR/Senko/tree/main/Examples/Senko.Bootstrap.Example)
+- [Senko.Discord](https://github.com/niallVR/Senko/tree/main/Examples/Senko.Discord.Example)
 
 ## ⏱️ Versioning
 Senko follows Semantic versioning. 
