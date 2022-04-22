@@ -2,6 +2,7 @@ using NiallVR.Senko.Core.Events.Interfaces;
 
 namespace NiallVR.Senko.Core.Events.Implementations; 
 
+/// <inheritdoc cref="IAsyncMonitoredValue{T}"/>
 public class AsyncMonitoredValue<T> : IAsyncMonitoredValue<T> {
     public T Value { get; private set; }
     public IAsyncEvent<T> OnChanged { get;  }

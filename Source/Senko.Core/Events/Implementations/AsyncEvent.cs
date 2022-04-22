@@ -2,6 +2,7 @@
 
 namespace NiallVR.Senko.Core.Events.Implementations; 
 
+/// <inheritdoc cref="IAsyncEvent{T}"/>
 public class AsyncEvent<T> : IAsyncEvent<T> {
     private readonly List<Func<T, Task>> _methods = new();
 

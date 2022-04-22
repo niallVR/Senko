@@ -4,6 +4,7 @@ using NiallVR.Senko.Core.Events.Interfaces;
 
 namespace NiallVR.Senko.Core.Events.Implementations;
 
+/// <inheritdoc cref="IAsyncEventChannel{T}"/>
 public class AsyncEventChannel<T> : IAsyncEventChannel<T> {
     private readonly ILogger _logger;
     private readonly AsyncEvent<T> _eventHandler = new();
