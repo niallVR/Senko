@@ -1,11 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace NiallVR.Senko.Extensions; 
+namespace NiallVR.Senko.Extensions;
 
 /// <summary>
 /// Extensions for the <see cref="string"/> class.
 /// </summary>
-public static class StringExtensions {
+public static class StringExtensions
+{
     /// <summary>
     /// Limits the string to the specified amount if it exceeds it.
     /// </summary>
@@ -14,7 +15,8 @@ public static class StringExtensions {
     /// <param name="wantEllipsis">True if the limited string should have an ellipsis.</param>
     /// <returns>The limited string.</returns>
     /// <remarks>If the length is 3 or less, no ellipsis will be added.</remarks>
-    public static string LimitString(this string input, int maxLength, bool wantEllipsis = true) {
+    public static string LimitString(this string input, int maxLength, bool wantEllipsis = true)
+    {
         if (input.Length <= maxLength)
             return input;
 
@@ -30,7 +32,8 @@ public static class StringExtensions {
     /// <param name="input">The string to convert.</param>
     /// <returns>The converted string.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string ToSearchFormat(this string input) {
+    public static string ToSearchFormat(this string input)
+    {
         return input.Trim().ToLower();
     }
 
@@ -39,34 +42,38 @@ public static class StringExtensions {
     /// </summary>
     /// <returns>True if they match, false if not.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool EqualsIgnoreCase(this string firstString, string secondString) {
+    public static bool EqualsIgnoreCase(this string firstString, string secondString)
+    {
         return firstString.Equals(secondString, StringComparison.InvariantCultureIgnoreCase);
     }
-    
+
     /// <summary>
     /// Checks if the first string contains the characters of the second string using <see cref="StringComparison.InvariantCultureIgnoreCase"/>.
     /// </summary>
     /// <returns>True if they match, false if not.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool ContainsIgnoreCase(this string firstString, string secondString) {
+    public static bool ContainsIgnoreCase(this string firstString, string secondString)
+    {
         return firstString.Contains(secondString, StringComparison.InvariantCultureIgnoreCase);
     }
-    
+
     /// <summary>
     /// Checks if the first string starts with the second string using <see cref="StringComparison.InvariantCultureIgnoreCase"/>.
     /// </summary>
     /// <returns>True if the first string starts with the second string, false if not.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool StartsWithIgnoreCase(this string firstString, string secondString) {
+    public static bool StartsWithIgnoreCase(this string firstString, string secondString)
+    {
         return firstString.StartsWith(secondString, StringComparison.InvariantCultureIgnoreCase);
     }
-    
+
     /// <summary>
     /// Checks if the first string ends with the second string using <see cref="StringComparison.InvariantCultureIgnoreCase"/>.
     /// </summary>
     /// <returns>True if the first string ends with the second string, false if not.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool EndsWithIgnoreCase(this string firstString, string secondString) {
+    public static bool EndsWithIgnoreCase(this string firstString, string secondString)
+    {
         return firstString.EndsWith(secondString, StringComparison.InvariantCultureIgnoreCase);
     }
 }

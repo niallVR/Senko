@@ -1,6 +1,7 @@
 namespace NiallVR.Senko.Extensions;
 
-public static class DictionaryExtensions {
+public static class DictionaryExtensions
+{
     /// <summary>
     /// Adds the value to the dictionary, if the key doesn't exist.
     /// Then returns the value stored under the key. 
@@ -11,7 +12,8 @@ public static class DictionaryExtensions {
     /// <typeparam name="TK">The type of key.</typeparam>
     /// <typeparam name="TV">The type of value.</typeparam>
     /// <returns>The value stored under the key if it exists, otherwise, the provided value.</returns>
-    public static TV AddAndGet<TK, TV>(this IDictionary<TK, TV> dict, TK key, TV value) {
+    public static TV AddAndGet<TK, TV>(this IDictionary<TK, TV> dict, TK key, TV value)
+    {
         if (dict.TryGetValue(key, out var foundValue))
             return foundValue;
 
@@ -29,7 +31,8 @@ public static class DictionaryExtensions {
     /// <typeparam name="TK">The type of key.</typeparam>
     /// <typeparam name="TV">The type of value.</typeparam>
     /// <returns>The value stored under the key if it exists, otherwise, the newly created value.</returns>
-    public static TV AddAndGet<TK, TV>(this IDictionary<TK, TV> dict, TK key, Func<TV> addFunction) {
+    public static TV AddAndGet<TK, TV>(this IDictionary<TK, TV> dict, TK key, Func<TV> addFunction)
+    {
         if (dict.TryGetValue(key, out var foundValue))
             return foundValue;
 

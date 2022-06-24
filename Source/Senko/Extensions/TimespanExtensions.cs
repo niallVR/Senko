@@ -1,6 +1,7 @@
 ﻿namespace NiallVR.Senko.Extensions;
 
-public static class TimespanExtensions {
+public static class TimespanExtensions
+{
     /// <summary>
     /// Formats a <see cref="TimeSpan"/> into a HH:MM:SS or HH:MM format.
     /// </summary>
@@ -11,7 +12,8 @@ public static class TimespanExtensions {
     /// 1 Hour, 23 minutes and 3 seconds (includeSeconds = true): "01:23:03"<br/>
     /// 1 Hour, 23 minutes and 3 seconds (includeSeconds = false): "01:23"
     /// </example>
-    public static string AsShortFormat(this TimeSpan timeSpan, bool includeSeconds = true) {
+    public static string AsShortFormat(this TimeSpan timeSpan, bool includeSeconds = true)
+    {
         var hours = timeSpan.Days * 24 + timeSpan.Hours;
         var minutes = timeSpan.Minutes;
         return includeSeconds ? $"{hours:D2}:{minutes:D2}:{timeSpan.Seconds:D2}" : $"{hours:D2}:{minutes:D2}";
@@ -29,7 +31,8 @@ public static class TimespanExtensions {
     /// 3 Hours, 23 minutes and 1 second: "3 Hours, 23 Minutes and 1 Second"<br/>
     /// 3 Hours and 1 second: "2 Hours and 1 Second"
     /// </example>
-    public static string AsLongFormat(this TimeSpan timeSpan) {
+    public static string AsLongFormat(this TimeSpan timeSpan)
+    {
         if (timeSpan.TotalMilliseconds == 0)
             return "0 Seconds";
 

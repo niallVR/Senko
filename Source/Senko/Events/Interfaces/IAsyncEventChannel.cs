@@ -1,4 +1,4 @@
-namespace NiallVR.Senko.Events.Interfaces; 
+namespace NiallVR.Senko.Events.Interfaces;
 
 /// <summary>
 /// <para>
@@ -15,7 +15,8 @@ namespace NiallVR.Senko.Events.Interfaces;
 /// </para>
 /// </summary>
 /// <typeparam name="T">The type passed to subscribers.</typeparam>
-public interface IAsyncEventChannel<T> : IDisposable {
+public interface IAsyncEventChannel<T> : IDisposable
+{
     /// <summary>
     /// Adds a new worker to the AsyncEventChannel.
     /// </summary>
@@ -25,24 +26,24 @@ public interface IAsyncEventChannel<T> : IDisposable {
     /// Adding the same method multiple times will result in multiple calls.
     /// </remarks>
     void AddWorker(Func<T, Task> listener);
-        
+
     /// <summary>
     /// Removes the worker from the AsyncEventChannel.
     /// </summary>
     /// <param name="listener">The method to remove.</param>
     void RemoveWorker(Func<T, Task> listener);
-    
+
     /// <summary>
     /// Returns a collection of the worker functions.
     /// </summary>
     /// <returns>All of the worker functions that are added to this AsyncEventChannel.</returns>
     IReadOnlyCollection<Func<T, Task>> GetWorkers();
-    
+
     /// <summary>
     /// Removes all worker functions from this AsyncEventChannel.
     /// </summary>
     void ClearWorkers();
-        
+
     /// <summary>
     /// Adds an event to the internal queue to be processed by the worker functions.
     /// </summary>

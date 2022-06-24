@@ -1,10 +1,11 @@
-namespace NiallVR.Senko.Events.Interfaces; 
+namespace NiallVR.Senko.Events.Interfaces;
 
 /// <summary>
 /// A asynchronous version of C# events.
 /// </summary>
 /// <typeparam name="T">The type sent when an event is raised.</typeparam>
-public interface IAsyncEvent<T> {
+public interface IAsyncEvent<T>
+{
     /// <summary>
     /// Subscribes a listener to the event.
     /// </summary>
@@ -14,7 +15,7 @@ public interface IAsyncEvent<T> {
     /// Adding the same method multiple times will result in multiple calls.
     /// </remarks>
     void Subscribe(Func<T, Task> method);
-        
+
     /// <summary>
     /// Unsubscribes a listener from the event if it's subscribed.
     /// </summary>
@@ -26,7 +27,7 @@ public interface IAsyncEvent<T> {
     /// </summary>
     /// <returns>The listeners subscribed to the event.</returns>
     IReadOnlyCollection<Func<T, Task>> GetListeners();
-        
+
     /// <summary>
     /// Removes all of the listeners subscribed to the event.
     /// </summary>
