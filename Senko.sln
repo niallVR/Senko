@@ -4,9 +4,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{5CBA77
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C553D5BE-8902-4608-8B63-D105D1C6F101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Core", "Source\Senko.Core\Senko.Core.csproj", "{89D3BCF0-9B76-4B71-ADB2-F97806292BFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko", "Source\Senko\Senko.csproj", "{89D3BCF0-9B76-4B71-ADB2-F97806292BFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Core.Tests.Unit", "Tests\Senko.Core.Tests.Unit\Senko.Core.Tests.Unit.csproj", "{66A09368-3C1A-4C55-9D04-78C7896C55C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senko.Tests.Unit", "Tests\Senko.Tests.Unit\Senko.Tests.Unit.csproj", "{66A09368-3C1A-4C55-9D04-78C7896C55C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
