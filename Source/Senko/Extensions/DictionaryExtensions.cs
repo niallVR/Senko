@@ -1,5 +1,8 @@
 namespace NiallVR.Senko.Extensions;
 
+/// <summary>
+/// Extensions for the <see cref="IDictionary{TK, TV}"/> interface.
+/// </summary>
 public static class DictionaryExtensions
 {
     /// <summary>

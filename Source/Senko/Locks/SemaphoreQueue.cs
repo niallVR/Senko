@@ -7,19 +7,29 @@ namespace NiallVR.Senko.Locks;
 /// </summary>
 public class SemaphoreQueue : IDisposable
 {
+    /// <inheritdoc cref="SemaphoreSlim.CurrentCount"/>
     public int CurrentCount => _semaphoreSlim.CurrentCount;
 
     private readonly SemaphoreSlim _semaphoreSlim;
     private readonly ConcurrentQueue<TaskCompletionSource> _queue = new();
 
+    /// <inheritdoc cref="SemaphoreSlim(int)"/>
     public SemaphoreQueue(int initialCount)
     {
         _semaphoreSlim = new SemaphoreSlim(initialCount);
     }
 
+    /// <inheritdoc cref="SemaphoreSlim(int, int)"/>
     public SemaphoreQueue(int initialCount, int maxCount)
     {
         _semaphoreSlim = new SemaphoreSlim(initialCount, maxCount);
+    }
+    
+    /// <inheritdoc cref="IDisposable.Dispose"/>
+    public void Dispose()
+    {
+        _semaphoreSlim.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     /// <inheritdoc cref="SemaphoreSlim.WaitAsync()"/>
@@ -32,7 +42,7 @@ public class SemaphoreQueue : IDisposable
 
         // Now we need to create a task which attempts to enter the semaphore.
         // Upon entering, it will pull the next task from the queue and complete it.
-        var _ = UnlockNextInLine();
+        _ = UnlockNextInLine();
 
         // All that's left to do is await our turn to enter the semaphore.
         await taskCompletionSource.Task;
@@ -51,9 +61,5 @@ public class SemaphoreQueue : IDisposable
         return _semaphoreSlim.Release();
     }
 
-    public void Dispose()
-    {
-        _semaphoreSlim.Dispose();
-        GC.SuppressFinalize(this);
-    }
+
 }

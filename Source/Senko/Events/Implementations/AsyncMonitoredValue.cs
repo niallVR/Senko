@@ -5,15 +5,19 @@ namespace NiallVR.Senko.Events.Implementations;
 /// <inheritdoc cref="IAsyncMonitoredValue{T}"/>
 public class AsyncMonitoredValue<T> : IAsyncMonitoredValue<T>
 {
+    /// <inheritdoc cref="IAsyncMonitoredValue{T}.Value"/>
     public T Value { get; private set; }
-    public IAsyncEvent<T> OnChanged { get; }
 
+    /// <inheritdoc cref="IAsyncMonitoredValue{T}.OnChanged"/>
+    public IAsyncEvent<T> OnChanged { get; } = new AsyncEvent<T>();
+    
+    /// <param name="initialValue">The value to initialise the monitored value with.</param>
     public AsyncMonitoredValue(T initialValue)
     {
         Value = initialValue;
-        OnChanged = new AsyncEvent<T>();
     }
 
+    /// <inheritdoc cref="IAsyncMonitoredValue{T}.SetValueAsync(T)"/>
     public async Task SetValueAsync(T newValue)
     {
         Value = newValue;

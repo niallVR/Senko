@@ -10,6 +10,7 @@
         <!-- Build -->
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         
         <!-- Nuget -->
         <PackageId>NiallVR.Senko</PackageId>

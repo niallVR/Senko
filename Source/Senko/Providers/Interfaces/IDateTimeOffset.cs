@@ -32,24 +32,19 @@ public interface IDateTimeOffset
     bool TryParse(string? input, IFormatProvider? formatProvider, DateTimeStyles styles, out DateTimeOffset result);
 
     /// <inheritdoc cref="DateTimeOffset.TryParse(ReadOnlySpan{char}, IFormatProvider?, DateTimeStyles, out DateTimeOffset)"/>
-    bool TryParse(ReadOnlySpan<char> input, IFormatProvider? formatProvider, DateTimeStyles styles,
-        out DateTimeOffset result);
+    bool TryParse(ReadOnlySpan<char> input, IFormatProvider? formatProvider, DateTimeStyles styles, out DateTimeOffset result);
 
     /// <inheritdoc cref="DateTimeOffset.TryParseExact(string?, string?, IFormatProvider?, DateTimeStyles, out DateTimeOffset)"/>
-    bool TryParseExact(string? input, string? format, IFormatProvider? formatProvider, DateTimeStyles styles,
-        out DateTimeOffset result);
+    bool TryParseExact(string? input, string? format, IFormatProvider? formatProvider, DateTimeStyles styles, out DateTimeOffset result);
 
     /// <inheritdoc cref="DateTimeOffset.TryParseExact(ReadOnlySpan{char}, ReadOnlySpan{char}, IFormatProvider?, DateTimeStyles, out DateTimeOffset)"/>
-    bool TryParseExact(ReadOnlySpan<char> input, ReadOnlySpan<char> format, IFormatProvider? formatProvider,
-        DateTimeStyles styles, out DateTimeOffset result);
+    bool TryParseExact(ReadOnlySpan<char> input, ReadOnlySpan<char> format, IFormatProvider? formatProvider, DateTimeStyles styles, out DateTimeOffset result);
 
     /// <inheritdoc cref="DateTimeOffset.TryParseExact(string?, string?[], IFormatProvider?, DateTimeStyles, out DateTimeOffset)"/>
-    bool TryParseExact(string? input, string?[]? formats, IFormatProvider? formatProvider, DateTimeStyles styles,
-        out DateTimeOffset result);
+    bool TryParseExact(string? input, string?[]? formats, IFormatProvider? formatProvider, DateTimeStyles styles, out DateTimeOffset result);
 
     /// <inheritdoc cref="DateTimeOffset.TryParseExact(ReadOnlySpan{char}, string?[], IFormatProvider?, DateTimeStyles, out DateTimeOffset)"/>
-    bool TryParseExact(ReadOnlySpan<char> input, string?[]? formats, IFormatProvider? formatProvider,
-        DateTimeStyles styles, out DateTimeOffset result);
+    bool TryParseExact(ReadOnlySpan<char> input, string?[]? formats, IFormatProvider? formatProvider, DateTimeStyles styles, out DateTimeOffset result);
 
     /// <inheritdoc cref="DateTimeOffset.FromUnixTimeSeconds"/>
     DateTimeOffset FromUnixTimeSeconds(long seconds);

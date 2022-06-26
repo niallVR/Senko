@@ -2,6 +2,9 @@ using System.Text.Json;
 
 namespace NiallVR.Senko.Providers.Interfaces;
 
+/// <summary>
+/// A testable wrapper around <see cref="JsonSerializer"/>.
+/// </summary>
 public interface ISystemJson
 {
     /// <inheritdoc cref="JsonSerializer.Deserialize{TValue}(Stream, JsonSerializerOptions?)"/>
@@ -11,8 +14,7 @@ public interface ISystemJson
     TValue? Deserialize<TValue>(string json, JsonSerializerOptions? options = null);
 
     /// <inheritdoc cref="JsonSerializer.DeserializeAsync{TValue}(Stream, JsonSerializerOptions?, CancellationToken)"/>
-    ValueTask<TValue?> DeserializeAsync<TValue>(Stream utf8Json, JsonSerializerOptions? options = null,
-        CancellationToken cancellationToken = default);
+    ValueTask<TValue?> DeserializeAsync<TValue>(Stream utf8Json, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default);
 
     /// <inheritdoc cref="JsonSerializer.Serialize(Stream, object?, Type, JsonSerializerOptions?)"/>
     void Serialize(Stream utf8Json, object? value, Type inputType, JsonSerializerOptions? options = null);
@@ -30,10 +32,8 @@ public interface ISystemJson
     string Serialize<TValue>(TValue value, JsonSerializerOptions? options = null);
 
     /// <inheritdoc cref="JsonSerializer.SerializeAsync(Stream, object?, Type, JsonSerializerOptions?, CancellationToken)"/>
-    Task SerializeAsync(Stream utf8Json, object? value, Type inputType, JsonSerializerOptions? options = null,
-        CancellationToken cancellationToken = default);
+    Task SerializeAsync(Stream utf8Json, object? value, Type inputType, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default);
 
     /// <inheritdoc cref="JsonSerializer.SerializeAsync{TValue}(Stream, TValue, JsonSerializerOptions?, CancellationToken)"/>
-    Task SerializeAsync<TValue>(Stream utf8Json, TValue value, JsonSerializerOptions? options = null,
-        CancellationToken cancellationToken = default);
+    Task SerializeAsync<TValue>(Stream utf8Json, TValue value, JsonSerializerOptions? options = null, CancellationToken cancellationToken = default);
 }

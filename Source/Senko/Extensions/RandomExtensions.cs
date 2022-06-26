@@ -19,8 +19,7 @@ public static class RandomExtensions
     /// <param name="includeNumbers">True if the random string should contain numbers, false if not.</param>
     /// <returns>The randomly generated string.</returns>
     /// <remarks>This should not be used for anything security related.</remarks>
-    public static string GenerateRandomString(this Random random, int length, bool includeUpper = true,
-        bool includeLower = true, bool includeNumbers = true)
+    public static string GenerateRandomString(this Random random, int length, bool includeUpper = true, bool includeLower = true, bool includeNumbers = true)
     {
         if (length < 1)
             return string.Empty;

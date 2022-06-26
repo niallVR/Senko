@@ -1,5 +1,8 @@
 ﻿namespace NiallVR.Senko.Extensions;
 
+/// <summary>
+/// Extensions for the <see cref="TimeSpan"/> struct.
+/// </summary>
 public static class TimespanExtensions
 {
     /// <summary>
