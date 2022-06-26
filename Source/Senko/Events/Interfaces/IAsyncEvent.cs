@@ -14,24 +14,28 @@ public interface IAsyncEvent<T>
     /// This does not check for duplicates!
     /// Adding the same method multiple times will result in multiple calls.
     /// </remarks>
-    void Subscribe(Func<T, Task> method);
+    void AddListener(Func<T, Task> method);
 
     /// <summary>
     /// Unsubscribes a listener from the event if it's subscribed.
     /// </summary>
     /// <param name="method">The method to remove.</param>
-    void Unsubscribe(Func<T, Task> method);
-
-    /// <summary>
-    /// Returns a collection of the listeners subscribed to the event.
-    /// </summary>
-    /// <returns>The listeners subscribed to the event.</returns>
-    IReadOnlyCollection<Func<T, Task>> GetListeners();
+    /// <remarks>
+    /// This will remove the first match of the listener.
+    /// If multiple of the same listener was added, call this multiple times.
+    /// </remarks>
+    void RemoveListener(Func<T, Task> method);
 
     /// <summary>
     /// Removes all of the listeners subscribed to the event.
     /// </summary>
     void ClearListeners();
+    
+    /// <summary>
+    /// Returns a collection of the listeners subscribed to the event.
+    /// </summary>
+    /// <returns>The listeners subscribed to the event.</returns>
+    IReadOnlyCollection<Func<T, Task>> GetListeners();
 
     /// <summary>
     /// Calls all of the listener methods with the provided data.
