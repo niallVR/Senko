@@ -2,15 +2,14 @@ namespace NiallVR.Senko.Events.Interfaces;
 
 /// <summary>
 /// <para>
-/// An event queue system which queues events and processes them on a first come first served basis.
+/// An event queue system which queues events and processes them one at a time.
 /// </para>
 /// <para>
 /// Worker functions are the functions which process the incoming events.
-/// For each AsyncEventChannel there can be many worker functions.
+/// For each IAsyncEventChannel there can be many worker functions.
 /// </para>
 /// <para>
 /// When a new event gets processed, it's added to the internal queue.
-/// Only one event can be processed at a time.
 /// Each event is processed by all of the worker functions before moving on to the next event in the queue.
 /// </para>
 /// </summary>
@@ -20,33 +19,35 @@ public interface IAsyncEventChannel<T> : IDisposable
     /// <summary>
     /// Adds a new worker to the AsyncEventChannel.
     /// </summary>
-    /// <param name="listener">The method to call when an event is being processed.</param>
-    /// <remarks>
-    /// This does not check for duplicates!
-    /// Adding the same method multiple times will result in multiple calls.
-    /// </remarks>
-    void AddWorker(Func<T, Task> listener);
+    /// <param name="worker">The method to call when an event is being processed.</param>
+    void AddWorker(Func<T, CancellationToken, Task> worker);
 
     /// <summary>
     /// Removes the worker from the AsyncEventChannel.
     /// </summary>
-    /// <param name="listener">The method to remove.</param>
-    void RemoveWorker(Func<T, Task> listener);
+    /// <param name="worker">The method to remove.</param>
+    void RemoveWorker(Func<T, CancellationToken, Task> worker);
 
     /// <summary>
-    /// Returns a collection of the worker functions.
-    /// </summary>
-    /// <returns>All of the worker functions that are added to this AsyncEventChannel.</returns>
-    IReadOnlyCollection<Func<T, Task>> GetWorkers();
-
-    /// <summary>
-    /// Removes all worker functions from this AsyncEventChannel.
+    /// Removes all of the workers from this IAsyncEventChannel.
     /// </summary>
     void ClearWorkers();
 
     /// <summary>
-    /// Adds an event to the internal queue to be processed by the worker functions.
+    /// Returns a collection of all the workers.
     /// </summary>
-    /// <param name="eventData">The event data.</param>
-    Task ProcessEventAsync(T eventData);
+    /// <returns>All of the workers that are added to this IAsyncEventChannel.</returns>
+    IReadOnlyCollection<Func<T, CancellationToken, Task>> GetWorkers();
+    
+    /// <summary>
+    /// Adds an event to be processed by the workers.
+    /// </summary>
+    /// <param name="eventData">The event data to be processed by the workers.</param>
+    /// <returns>A task which completes when the event data is added to the queue.</returns>
+    ValueTask AddEventAsync(T eventData);
+
+    /// <summary>
+    /// Clears the queue and stops the workers if they're processing an event.
+    /// </summary>
+    void ClearEvents();
 }
