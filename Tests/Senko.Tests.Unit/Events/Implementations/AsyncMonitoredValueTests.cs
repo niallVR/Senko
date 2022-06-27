@@ -22,7 +22,7 @@ public class AsyncMonitoredValueTests {
     public async Task SetValueAsync_Should_TriggerEvent() {
         // Arrange
         var eventValue = 0;
-        _systemUnderTest.OnChanged.Subscribe(e => { eventValue = e; return Task.CompletedTask; });
+        _systemUnderTest.OnChanged.AddListener(e => { eventValue = e; return Task.CompletedTask; });
 
         // Act
         await _systemUnderTest.SetValueAsync(10);

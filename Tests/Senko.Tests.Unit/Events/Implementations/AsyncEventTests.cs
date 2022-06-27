@@ -17,48 +17,45 @@ public class AsyncEventTests {
     [Fact]
     public void Subscribe_Should_AddListeners() {
         // Act
-        _systemUnderTest.Subscribe(_listener1);
-        _systemUnderTest.Subscribe(_listener2);
+        _systemUnderTest.AddListener(_listener1);
+        _systemUnderTest.AddListener(_listener2);
         
         // Assert
-        var listeners = _systemUnderTest.GetListeners();
-        listeners.Should().HaveCount(2);
-        listeners.Should().Contain(_listener1);
-        listeners.Should().Contain(_listener2);
+        _systemUnderTest.GetListeners().Should().HaveCount(2);
+        _systemUnderTest.GetListeners().Should().Contain(_listener1);
+        _systemUnderTest.GetListeners().Should().Contain(_listener2);
     }
 
     [Fact]
     public void Subscribe_Should_AllowMultipleListenersOfTheSameType() {
         // Act
-        _systemUnderTest.Subscribe(_listener1);
-        _systemUnderTest.Subscribe(_listener1);
+        _systemUnderTest.AddListener(_listener1);
+        _systemUnderTest.AddListener(_listener1);
         
         // Assert
-        var listeners = _systemUnderTest.GetListeners();
-        listeners.Should().HaveCount(2);
-        listeners.All(l => l == _listener1).Should().BeTrue();
+        _systemUnderTest.GetListeners().Should().HaveCount(2);
+        _systemUnderTest.GetListeners().All(l => l == _listener1).Should().BeTrue();
     }
     
     [Fact]
     public void Unsubscribe_Should_RemoveOnlyOneListener() {
         // Arrange
-        _systemUnderTest.Subscribe(_listener1);
-        _systemUnderTest.Subscribe(_listener1);
+        _systemUnderTest.AddListener(_listener1);
+        _systemUnderTest.AddListener(_listener1);
         
         // Act
-        _systemUnderTest.Unsubscribe(_listener1);
+        _systemUnderTest.RemoveListener(_listener1);
 
         // Assert
-        var listeners = _systemUnderTest.GetListeners();
-        listeners.Should().HaveCount(1);
-        listeners.Should().Contain(_listener1);
+        _systemUnderTest.GetListeners().Should().HaveCount(1);
+        _systemUnderTest.GetListeners().Should().Contain(_listener1);
     }
     
     [Fact]
     public void ClearListeners_Should_RemoveAllListener() {
         // Arrange
-        _systemUnderTest.Subscribe(_listener1);
-        _systemUnderTest.Subscribe(_listener2);
+        _systemUnderTest.AddListener(_listener1);
+        _systemUnderTest.AddListener(_listener2);
         
         // Act
         _systemUnderTest.ClearListeners();
@@ -67,12 +64,12 @@ public class AsyncEventTests {
         _systemUnderTest.GetListeners().Should().BeEmpty();
     }
 
-    [Fact(Timeout = 150)]
-    public async Task InvokeAsync_Should_CallListeners() {
+    [Fact(Timeout = 100)]
+    public async Task InvokeAsync_Should_CallListenersAtSameTime() {
         // Arrange
         var calledListeners = new ConcurrentBag<int>(); 
-        _systemUnderTest.Subscribe(async _ => { await Task.Delay(TimeSpan.FromMilliseconds(100)); calledListeners.Add(1); });
-        _systemUnderTest.Subscribe(async _ => { await Task.Delay(TimeSpan.FromMilliseconds(100)); calledListeners.Add(2); });
+        _systemUnderTest.AddListener(async _ => { await Task.Delay(TimeSpan.FromMilliseconds(50)); calledListeners.Add(1); });
+        _systemUnderTest.AddListener(async _ => { await Task.Delay(TimeSpan.FromMilliseconds(50)); calledListeners.Add(2); });
 
         // Act
         await _systemUnderTest.InvokeAsync(0);
@@ -86,8 +83,8 @@ public class AsyncEventTests {
     [Fact]
     public async Task InvokeAsync_Should_ThrowListenerExceptions() {
         // Arrange
-        _systemUnderTest.Subscribe(_ => throw new ArgumentNullException());
-        _systemUnderTest.Subscribe(async _ => { 
+        _systemUnderTest.AddListener(_ => throw new ArgumentNullException());
+        _systemUnderTest.AddListener(async _ => { 
             await Task.Delay(TimeSpan.FromMilliseconds(100));
             throw new SystemException();
         });
@@ -104,7 +101,7 @@ public class AsyncEventTests {
     public async Task InvokeAsync_Should_PassArgumentToListeners() {
         // Arrange
         var providedValue = 0;
-        _systemUnderTest.Subscribe(number => { providedValue = number; return Task.CompletedTask; });
+        _systemUnderTest.AddListener(number => { providedValue = number; return Task.CompletedTask; });
 
         // Act
         await _systemUnderTest.InvokeAsync(10);
